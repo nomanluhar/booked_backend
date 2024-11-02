@@ -1,0 +1,53 @@
+import { Controller, Get, Post, Body, Param, Put, Delete } from '@nestjs/common';
+import { UserService } from './user.service';
+import { User } from './entities/user.entity';
+
+interface UserResponse {
+    message: string;
+    data: User[]
+}
+
+@Controller('users')
+export class UserController {
+    constructor(private readonly userService: UserService) { }
+
+    // Create a new user
+    @Post()
+    async create(@Body() userData: Partial<User>): Promise<User> {
+        return this.userService.create(userData);
+    }
+
+    // Get all users
+    @Get()
+    async findAll(): Promise<UserResponse> {
+        const users = await this.userService.findAll();
+        if (users.length === 0) {
+            return {
+                message: 'No users found.',
+                data: users,
+            };
+        }
+        return {
+            message: 'Users retrieved successfully.',
+            data: users,
+        };
+    }
+
+    // Get a user by ID
+    @Get(':id')
+    async findOne(@Param('id') id: number): Promise<User> {
+        return this.userService.findOne(id);
+    }
+
+    // Update a user
+    @Put(':id')
+    async update(@Param('id') id: number, @Body() userData: Partial<User>): Promise<User> {
+        return this.userService.update(id, userData);
+    }
+
+    // Delete a user
+    @Delete(':id')
+    async remove(@Param('id') id: number): Promise<void> {
+        return this.userService.remove(id);
+    }
+}
