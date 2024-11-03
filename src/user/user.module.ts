@@ -9,6 +9,7 @@ import { User } from './entities/user.entity';
         TypeOrmModule.forFeature([User]) // Register User entity here to enable injection
       ],
     providers: [UserService],
-    controllers: [UserController]
+    controllers: [UserController],
+    exports: [UserService], // Make sure UserService is exported
 })
 export class UserModule { }

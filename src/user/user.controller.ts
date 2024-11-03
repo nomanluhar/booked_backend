@@ -12,11 +12,6 @@ interface UserResponse {
 export class UserController {
     constructor(private readonly userService: UserService) { }
 
-    @Post('signup')
-    async register(@Body() createUserDto: CreateUserDto): Promise<Partial<User>> {
-        return this.userService.create(createUserDto);
-    }
-
     // Get all users
     @Get()
     async findAll(): Promise<UserResponse> {

@@ -4,6 +4,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { JwtModule } from '@nestjs/jwt';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -18,11 +19,8 @@ import { JwtModule } from '@nestjs/jwt';
       synchronize: true,
       autoLoadEntities: true,
     }),
-    // JwtModule.forRoot({
-    //   secret: 'yourSecretKey', // Replace with your actual secret key
-    //   signOptions: { expiresIn: '60s' }, // Token expiration time
-    // }),
-    UserModule,
+    // UserModule,
+    AuthModule
   ],
   controllers: [AppController],
   providers: [AppService],
