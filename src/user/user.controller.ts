@@ -1,6 +1,7 @@
 import { Controller, Get, Post, Body, Param, Put, Delete } from '@nestjs/common';
 import { UserService } from './user.service';
 import { User } from './entities/user.entity';
+import { CreateUserDto } from './dto/create-user.dto';
 
 interface UserResponse {
     message: string;
@@ -11,10 +12,9 @@ interface UserResponse {
 export class UserController {
     constructor(private readonly userService: UserService) { }
 
-    // Create a new user
-    @Post()
-    async create(@Body() userData: Partial<User>): Promise<User> {
-        return this.userService.create(userData);
+    @Post('signup')
+    async register(@Body() createUserDto: CreateUserDto): Promise<Partial<User>> {
+        return this.userService.create(createUserDto);
     }
 
     // Get all users
