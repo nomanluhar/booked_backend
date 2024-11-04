@@ -5,6 +5,7 @@ import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { JwtModule } from '@nestjs/jwt';
 import { AuthModule } from './auth/auth.module';
+import { ProfileController } from './profile/profile.controller';
 
 @Module({
   imports: [
@@ -20,9 +21,10 @@ import { AuthModule } from './auth/auth.module';
       autoLoadEntities: true,
     }),
     // UserModule,
-    AuthModule
+    AuthModule,
+    JwtModule
   ],
-  controllers: [AppController],
+  controllers: [AppController, ProfileController],
   providers: [AppService],
 })
 
