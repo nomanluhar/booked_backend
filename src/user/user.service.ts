@@ -36,12 +36,12 @@ export class UserService {
   }
 
   // Find a user by ID
-  async findOne(id: number): Promise<User> {
+  async findOne(id: string): Promise<User> {
     return await this.userRepository.findOneBy({ id });
   }
 
   // Update a user
-  async update(id: number, userData: Partial<User>): Promise<User> {
+  async update(id: string, userData: Partial<User>): Promise<User> {
     await this.userRepository.update(id, userData);
     return this.findOne(id); // Return the updated user
   }

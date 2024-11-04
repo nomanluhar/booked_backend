@@ -30,13 +30,13 @@ export class UserController {
 
     // Get a user by ID
     @Get(':id')
-    async findOne(@Param('id') id: number): Promise<User> {
+    async findOne(@Param('id') id: string): Promise<User> {
         return this.userService.findOne(id);
     }
 
     // Update a user
     @Put(':id')
-    async update(@Param('id') id: number, @Body() userData: Partial<User>): Promise<User> {
+    async update(@Param('id') id: string, @Body() userData: Partial<User>): Promise<User> {
         return this.userService.update(id, userData);
     }
 

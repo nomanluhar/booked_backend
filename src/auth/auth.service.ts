@@ -37,8 +37,6 @@ export class AuthService {
       password: hashedPassword, // Set hashed password
     });
 
-    console.log({ newUser })
-
     return newUser;
   }
 
